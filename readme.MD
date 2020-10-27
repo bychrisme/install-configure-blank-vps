@@ -181,3 +181,10 @@ $ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 $ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 $ sudo apt-get update && sudo apt-get install yarn  
 ```
+
+## - install Let's encrypt
+```
+$ curl -o- https://raw.githubusercontent.com/vinyll/certbot-install/master/install.sh | bash
+$ certbot --version
+$ sudo certbot --nginx -d example.com -d www.example.com
+```
