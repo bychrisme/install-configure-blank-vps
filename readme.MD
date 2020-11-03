@@ -154,7 +154,20 @@ $ sudo mysql
 ```
 $ sudo mysql -u root -p    // log at root account with password
 ```
-    
+
+## - install phpmyadmin
+```
+$ mysql -u root -p
+
+> create database phpmyadmin;
+> CREATE USER 'phpmyadmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+> GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'phpmyadmin'@'localhost';
+> FLUSH PRIVILEGES;
+> exit
+
+$ sudo apt install phpmyadmin  // Choose none of web server proposed
+```    
+
 ## - install composer
 ```
 $ sudo apt install zip unzip
