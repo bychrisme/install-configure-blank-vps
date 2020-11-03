@@ -45,17 +45,23 @@ $ sudo apt update && sudo apt upgrade
 $ sudo apt install curl
 ```
 
-## - install PHP7.3 :
+## - install PHP7.4 :
+### on Ubuntu 20.04
 ```
-$ sudo apt upgrade
-$ sudo apt-get install php
-$ sudo apt-get install php-pear php-fpm php-dev php-zip php-curl php-xmlrpc php-gd php-mysql php-mbstring php-xml libapache2-mod-php php-intl php-bcmath php-cli -y
-$ sudo apt install software-properties-common
-$ sudo add-apt-repository ppa:ondrej/php
 $ sudo apt update
-$ sudo apt install php7.3-fpm -y
-$ sudo apt install php7.3 -y
-$ sudo apt install php7.3-common php7.3-mysql php7.3-xml php7.3-xmlrpc php7.3-curl php7.3-gd php7.3-imagick php7.3-cli php7.3-dev php7.3-imap php7.3-mbstring php7.3 opcache php7.3-soap php7.3-zip php7.3-intl php7.3-bcmath -y
+$ sudo apt install php php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
+
+```
+### on Ubuntu 18.04/16.04
+```
+$ sudo apt-get update
+$ sudo apt -y install software-properties-common
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt-get update
+$ sudo apt -y install php7.4
+$ sudo apt-get install -y php7.4-{bcmath,bz2,intl,gd,mbstring,mysql,zip,common}
+```
+```
 $ sudo php-fpm7.3 -t 
 $ sudo service php7.3-fpm restart
 ```
