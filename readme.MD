@@ -62,8 +62,8 @@ $ sudo apt -y install php7.4
 $ sudo apt-get install -y php7.4-{bcmath,bz2,intl,gd,mbstring,mysql,zip,common}
 ```
 ```
-$ sudo php-fpm7.3 -t 
-$ sudo service php7.3-fpm restart
+$ sudo php-fpm7.4 -t 
+$ sudo service php7.4-fpm restart
 ```
 $ 
 ## - intall nginx : 
