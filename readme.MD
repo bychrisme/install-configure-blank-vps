@@ -2,7 +2,7 @@
 
 ## - log in server : 
 ```
-$ ssh-keygen -f "/home/bychrisme/.ssh/known_hosts" -R "ip_address"
+$ ssh-keygen -f "/home/user_name/.ssh/known_hosts" -R "ip_address"
 $ ssh username@ip_address
 ```
     
