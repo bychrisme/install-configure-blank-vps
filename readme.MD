@@ -76,6 +76,7 @@ $ sudo service php7.4-fpm restart
 $ 
 ## - intall nginx : 
 ```
+$ sudo service apache2 stop
 $ sudo apt install nginx
 $ sudo ufw allow 'Nginx HTTP'
 ```
