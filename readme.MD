@@ -73,7 +73,6 @@ $ sudo apt-get install -y php7.4-{bcmath,bz2,intl,gd,mbstring,mysql,zip,common}
 $ sudo php-fpm7.4 -t 
 $ sudo service php7.4-fpm restart
 ```
-$ 
 ## - intall nginx : 
 ```
 $ sudo service apache2 stop
@@ -175,7 +174,84 @@ $ mysql -u root -p
 > exit
 
 $ sudo apt install phpmyadmin  // Choose none of web server proposed
-```    
+```  
+create phpmyadmin file inside /etc/nginx/snippets
+```
+$ cd /etc/nginx/snippets
+$ sudo nano phpmyadmin
+```
+Paste the following code
+```
+location /phpmyadmin {
+    root /usr/share/;
+    index index.php index.html index.htm;
+    location ~ ^/phpmyadmin/(.+\.php)$ {
+        try_files $uri =404;
+        root /usr/share/;
+        fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+
+    location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+        root /usr/share/;
+    }
+}
+```
+Create Nginx config file for phpmyadmin url
+```
+$ cd /etc/nginx/sites-available
+$ sudo nano phpmyadmin.conf
+```
+Paste the following code
+```
+server {
+        listen 80;
+        server_name phpmyadmin.example.com www.phpmyadmin.example.com;
+
+        root /usr/share/phpmyadmin;
+        index index.html index.php;
+
+        charset utf-8;
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location = /robots.txt  { access_log off; log_not_found off; }
+
+        access_log off;
+        error_log  /var/log/nginx/phpmyadmin-error.log error;
+
+        sendfile off;
+
+        client_max_body_size 100m;
+
+        location / {
+           try_files $uri $uri/ /index.php$is_args$args;
+        }
+
+        location ~ \.php$ {      
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+            fastcgi_index index.php;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_intercept_errors off;
+            fastcgi_buffer_size 16k;
+            fastcgi_buffers 4 16k;
+        }
+
+        location ~ /\.ht {
+            deny all;
+        }
+    
+}
+```
+Create symbolic link and restart Nginx
+```
+$ sudo ln -s /etc/nginx/sites-available/phpmyadmin.conf /etc/nginx/sites-enabled/
+$ sudo service nginx restart
+```
+
 
 ## - install composer
 ```
