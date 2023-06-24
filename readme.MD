@@ -16,6 +16,7 @@ $ su - username     // to switch on recently account created
     
 ## - disable root connection
 ```
+$ find / -name "sshd_config" 2>/dev/null  // to locate sshd_config
 $ sudo nano /etc/ssh/sshd_config      // set PermitRootLogin to no
 $ sudo service ssh restart
 ```
@@ -23,7 +24,6 @@ $ sudo service ssh restart
 ## - change port connection :
 find line with #port 22 and uncomment this field and set your port number, save and exit example port 2222
 ```
-$ find / -name "sshd_config" 2>/dev/null  // to locate sshd_config
 $ sudo nano /etc/ssh/sshd_config
 ```
 
@@ -32,7 +32,7 @@ $ sudo nano /etc/ssh/sshd_config
 $ sudo ufw default deny incoming
 $ sudo ufw default allow outgoing
 $ sudo ufw allow ssh
-$ sudo ufw allow 2222/tcp // 2222 is your new port
+$ sudo ufw allow 2222/tcp       // 2222 is your new port
 $ sudo ufw enable
 $ sudo ufw allow 80
 $ sudo ufw allow 443
