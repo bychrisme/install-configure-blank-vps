@@ -1,4 +1,4 @@
-# install and configure new blank server
+# install and configure new blank server with Nginx server
 
 ## - log in server : 
 ```
@@ -45,6 +45,14 @@ $ sudo apt update && sudo apt upgrade
 $ sudo apt install curl
 ```
 
+## - install PHP8.1 :
+### on Ubuntu 22.04
+```
+$ sudo apt update
+$ sudo apt install --no-install-recommends php8.1
+$ sudo apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath
+
+```
 ## - install PHP7.4 :
 ### on Ubuntu 20.04
 ```
