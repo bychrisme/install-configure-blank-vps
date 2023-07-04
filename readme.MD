@@ -16,8 +16,8 @@ $ su - username     // to switch on recently account created
     
 ## - disable root connection
 ```
-$ find / -name "sshd_config" 2>/dev/null  // to locate sshd_config
-$ sudo nano /etc/ssh/sshd_config      // set PermitRootLogin to no
+$ find / -name "sshd_config" 2>/dev/null      // to locate sshd_config
+$ sudo nano /etc/ssh/sshd_config              // set PermitRootLogin to no
 $ sudo service ssh restart
 ```
     
